@@ -5,30 +5,29 @@ import (
 	"testing"
 )
 
-
 func TestParse(t *testing.T) {
 	tests := []struct {
-		name string
-		input string
-		want []Package
+		name    string
+		input   string
+		want    []Package
 		wantErr bool
-	} {
+	}{
 		{
-			name: "two packages",
+			name:  "two packages",
 			input: "yay 12.3.5\n brave-browser 0.3.5\n",
-			want: []Package {
+			want: []Package{
 				{Name: "yay", Version: "12.3.5"},
-				{Name: "brave-browser", Version: "0.3.5"}
+				{Name: "brave-browser", Version: "0.3.5"},
 			},
 		},
 		{
-			name: "empty",
+			name:  "empty",
 			input: "",
-			want: nil
+			want:  nil,
 		},
 		{
-			name: "malformed line",
-			input: "justoneline\n",
+			name:    "malformed line",
+			input:   "justoneline\n",
 			wantErr: true,
 		},
 	}
