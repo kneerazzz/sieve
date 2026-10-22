@@ -66,7 +66,7 @@ func (c *Client) Info(ctx context.Context, names []string) (map[string]Info, err
 func (c *Client) fetch(ctx context.Context, names []string) ([]Info, error) {
 	q := url.Values{}
 	for _, n := range names {
-		q.Add("args[]", n)
+		q.Add("arg[]", n)
 	}
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.BaseUrl+"/info?"+q.Encode(), nil)
 

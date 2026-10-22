@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"time"
 
 	"github.com/kneerazzz/sieve/internal/audit"
@@ -47,11 +48,13 @@ func main() {
 					}
 					modified = time.Unix(info.LastModified, 0).Format("2026-01-02")
 				}
-				cmd.Printf("%-35s %-16s %-12s %v\n", p.Name, maint, modified, audit.Flags(info, found, now))
+				cmd.Printf("%-45s %-16s %-12s %v\n", p.Name, maint, modified, audit.Flags(info, found, now))
 			}
 			return nil
 		},
 	}
 	root.AddCommand(auditCmd)
-	root.Execute()
+	if err := root.Execute(); err != nil {
+		os.Exit()
+	}
 }
